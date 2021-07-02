@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BookManagementSystem</title>
+</head>
+<body>
+<a>按书名精确查询</a>
+<form action="/searchBookByName" method="get">
+    <label>
+        <input type="text" name="name">
+        <input type="submit">
+    </label>
+</form>
+<a>模糊查询</a>
+<form action="/fuzzySearch" method="get">
+    <label>
+        <input type="text" name="name">
+        <select name="judge">
+            <option value="1">按书名</option>
+            <option value="0">按作者</option>
+        </select>
+        <input type="submit">
+    </label>
+</form>
+</body>
+</html>

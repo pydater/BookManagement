@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <title>查询结果</title>
+    <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+
+<script type="text/javascript" charset="UTF-8">
+    function nextpage(){
+        var page = $('#page').text();
+        var totalpage = $('#totalpage').text();
+        if (page === totalpage) {
+            alert("已经是最后一页了");
+            return;
+        }
+        page++;
+        var judge = $('#judge').text();
+        var name = $('#name').text();
+        // alert(name);
+        // alert(judge);
+        // alert(page);
+        if (name !== "" && page !== "" && judge !== "") {
+            var form = $("<form method='post'></form>");
+            form.attr({ "action": "/fuzzySearch" });
+            var input = $("<input type='hidden'>");
+            input.attr({ "name": "name" });
+            input.val(name);
+            form.append(input);
+            input = $("<input type='hidden'>");
+            input.attr({ "name": "page" });
+            input.val(page);
+            form.append(input);
+            input = $("<input type='hidden'>");
+            input.attr({ "name": "judge" });
+            input.val(judge);
+            form.append(input);
+            $("body").append(form);
+            form.submit();
+        } else {
+            alert("跳转出问题了");
+        }
+    }
+    function lastpage(){
+        var page = $('#page').text();
+        page--;
+        var judge = $('#judge').text();
+        var name = $('#name').text();
+        var total = $('#total').text();
+        // alert(name);
+        // alert(judge);
+        // alert(page);
+        if (page === 0) {
+            alert("已经是第一页了");
+            return;
+        }
+        if (name !== "" && page !== "" && judge !== "") {
+            var form = $("<form method='post'></form>");
+            form.attr({ "action": "/fuzzySearch" });
+            var input = $("<input type='hidden'>");
+            input.attr({ "name": "name" });
+            input.val(name);
+            form.append(input);
+            input = $("<input type='hidden'>");
+            input.attr({ "name": "page" });
+            input.val(page);
+            form.append(input);
+            input = $("<input type='hidden'>");
+            input.attr({ "name": "judge" });
+            input.val(judge);
+            form.append(input);
+            $("body").append(form);
+            form.submit();
+        } else {
+            alert("跳转出问题了");
+        }
+    }
+</script>
+<a th:text="${judge}" hidden="hidden" id="judge">${judge}</a>
+<h1 th:text="${name}" id="name">"${name}"</h1>
+<a>共找到</a>
+<a th:text="${total}" id="total">${total}</a>
+<a>条结果</a><br>
+<a>第</a>
+<a th:text="${page}" id="page">"${page}"</a>
+<a>页，共</a>
+<a th:text="${pagetotal}" id="totalpage">${pagetotal}</a>
+<a>页</a><br><br>
+<a style="font-size: 30px">《</a>
+<a th:text="${titles[0]}" style="font-size: 30px">${titles}</a>
+<a style="font-size: 30px">》</a>
+<a th:text="${authors[0]}" style="font-size: 20px">${authors}</a><br>
+<a style="font-size: 30px">《</a>
+<a th:text="${titles[1]}" style="font-size: 30px">${titles}</a>
+<a style="font-size: 30px">》</a>
+<a th:text="${authors[1]}" style="font-size: 20px">${authors}</a><br>
+<a style="font-size: 30px">《</a>
+<a th:text="${titles[2]}" style="font-size: 30px">${titles}</a>
+<a style="font-size: 30px">》</a>
+<a th:text="${authors[2]}" style="font-size: 20px">${authors}</a><br>
+<a style="font-size: 30px">《</a>
+<a th:text="${titles[3]}" style="font-size: 30px">${titles}</a>
+<a style="font-size: 30px">》</a>
+<a th:text="${authors[3]}" style="font-size: 20px">${authors}</a><br>
+<a style="font-size: 30px">《</a>
+<a th:text="${titles[4]}" style="font-size: 30px">${titles}</a>
+<a style="font-size: 30px">》</a>
+<a th:text="${authors[4]}" style="font-size: 20px">${authors}</a><br>
+
+<label>
+    <input type="button" style="width:90px;height:30px;" value="上一页" name="bt" onclick="lastpage()"/>
+</label>
+
+<label>
+    <input type="button" style="width:90px;height:30px;" value="下一页" name="bt" onclick="nextpage()" />
+</label>
+
+</body>
+</html>
